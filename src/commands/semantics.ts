@@ -9,8 +9,8 @@ const command: GluegunCommand = {
     const { print, parameters } = toolbox;
     const { options } = parameters;
 
-    const semanticsOutputPath = options.semanticsOut;
     const semanticsTsPath = options.s || options.semantics;
+    const semanticsOutputPath = options.semanticsOut;
     const translationKeyOutputPath = options.t || options.translations;
 
     if (!semanticsTsPath) {
