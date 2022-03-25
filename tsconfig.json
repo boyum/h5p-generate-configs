@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": false,
+    "experimentalDecorators": true,
+    "lib": ["ESNext", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "outDir": "build",
+    "strict": true,
+    "target": "es5",
+    "declaration": true,
+    "declarationDir": "build/types",
+    "downlevelIteration": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
