@@ -31,7 +31,7 @@
   "dependencies": {
     "gluegun": "latest",
     "h5p-types": "github:boyum/h5p-types",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.4"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
