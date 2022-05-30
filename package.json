@@ -26,7 +26,8 @@
     "LICENSE",
     "readme.md",
     "docs",
-    "bin"
+    "bin",
+    "tsconfig.json"
   ],
   "license": "MIT",
   "dependencies": {

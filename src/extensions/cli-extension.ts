@@ -14,3 +14,6 @@
 //   ...toolbox.config.loadConfig("h5p-generate-configs", process.cwd())
 // }
 // };
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+module.exports = (): void => {};
