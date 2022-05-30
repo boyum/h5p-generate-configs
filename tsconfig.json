@@ -18,6 +18,5 @@
     "skipLibCheck": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "demo"],
-  "extends": "@tsconfig/strictest/tsconfig.json"
+  "exclude": ["node_modules", "demo"]
 }
