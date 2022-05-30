@@ -1,5 +1,5 @@
 import { build } from "gluegun";
-import { Options } from "gluegun/build/types/domain/options";
+import type { Options } from "gluegun/build/types/domain/options";
 
 /**
  * Create the cli and kick it off

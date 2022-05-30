@@ -1,5 +1,5 @@
 import { promises as fs } from "fs";
-import { GluegunPrint } from "gluegun";
+import type { GluegunPrint } from "gluegun";
 import type { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
 import type { Semantics } from "../types/Semantics";
 import { findDuplicates } from "./array.utils";

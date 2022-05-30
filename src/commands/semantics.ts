@@ -1,10 +1,9 @@
-import { GluegunCommand, GluegunToolbox } from "gluegun";
+import type { GluegunCommand, GluegunToolbox } from "gluegun";
 import { join } from "path";
-import type { OptionType } from "../types/OptionType";
 import { getOption } from "../utils/cli.utils";
 import { generateSemantics } from "../utils/semantics.utils";
 
-const optionTypes: Record<string, OptionType> = {
+const optionTypes = {
   input: {
     name: "in",
     alias: "i",

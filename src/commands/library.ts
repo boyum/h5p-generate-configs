@@ -1,4 +1,4 @@
-import { GluegunToolbox } from "gluegun";
+import type { GluegunToolbox } from "gluegun";
 
 export default {
   name: "generate-library",
