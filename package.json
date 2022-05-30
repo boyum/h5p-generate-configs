@@ -19,7 +19,7 @@
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage",
-    "demo:semantics": "h5p-generate-configs s -s demo/semantics.ts --semanticsOut demo/semantics.json -t demo/TranslationKey.ts",
+    "demo:semantics": "h5p-generate-configs s --in demo/semantics.ts --out demo/semantics.json -t demo/TranslationKey.ts",
     "publish-to-npm": "np"
   },
   "files": [

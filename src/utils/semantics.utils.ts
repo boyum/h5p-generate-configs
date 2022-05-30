@@ -9,10 +9,10 @@ type Semantics = Array<H5PField | H5PBehaviour | H5PL10n>;
 
 async function createSemanticsJson(
   semantics: Semantics,
-  semanticsOutputPath: string,
+  outputPath: string,
 ): Promise<void> {
   const textContent = JSON.stringify(semantics, null, 2);
-  await fs.writeFile(semanticsOutputPath, `${textContent}\n`);
+  await fs.writeFile(outputPath, `${textContent}\n`);
 }
 
 const isH5PL10n = (obj: H5PField | H5PBehaviour | H5PL10n): obj is H5PL10n => {
@@ -71,7 +71,7 @@ export type TranslationKey =
 
 export async function generateSemantics(
   semanticsTsPath: string,
-  semanticsOutputPath: string | undefined,
+  outputPath: string | undefined,
   translationKeyOutputPath: string,
   print: GluegunPrint,
 ): Promise<void> {
@@ -92,5 +92,5 @@ export async function generateSemantics(
   }
 
   print.info("Generating JSON file for semantics.");
-  await createSemanticsJson(semantics, semanticsOutputPath || semanticsPath);
+  await createSemanticsJson(semantics, outputPath || semanticsPath);
 }

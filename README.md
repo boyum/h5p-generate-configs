@@ -9,7 +9,7 @@ To run the program that generates semantics, run `h5p-generate-configs generate-
 To generate `semantics.json` from `semantics.ts`, provide the path to `semantics.ts`. The JSON will by default be outputted to the current directory:
 
 ```shell
-$ h5p-generate-configs s --semantics src/semantics.ts
+$ h5p-generate-configs s --in src/semantics.ts
 ```
 
 The tool can also create a TypeScript `type` file for the translation keys found in `semantics.ts`. Provide an output path as such:
@@ -22,8 +22,8 @@ $ h5p-generate-configs s -s src/semantics.ts -t src/TranslationKey.ts
 
 | Name             | Alias | Description                                                                | Required | Default          |
 | ---------------- | ----- | -------------------------------------------------------------------------- | -------- | ---------------- |
-| `--semantics`    | `-s`  | Path to the TypeScript definition of semantics                             | `true`   | -                |
-| `--semanticsOut` | -     | Path to JSON output                                                        | `false`  | `semantics.json` |
+| `--in`           | `-i`  | Path to the TypeScript definition of semantics                             | `true`   | -                |
+| `--out`          | `-o`  | Path to JSON output                                                        | `false`  | `semantics.json` |
 | `--translations` | `-t`  | Path to translation type output. The file won't be created if not provided | `false`  | -                |
 
 ## Publishing to NPM

@@ -18,7 +18,7 @@ test("generates semantics.json", async () => {
 
   try {
     await cli(
-      `s -s ${tempDir}/semantics.ts --semanticsOut ${tempDir}/semantics.json -t ${tempDir}/TranslationKey.ts`,
+      `generate-semantics --in ${tempDir}/semantics.ts --out ${tempDir}/semantics.json -t ${tempDir}/TranslationKey.ts`,
     );
 
     const expected = (await fs.readFile("demo/semantics.json")).toString(
