@@ -1,5 +1,6 @@
 import { GluegunCommand, GluegunToolbox } from "gluegun";
 import { generateSemantics } from "../utils/semantics.utils";
+import { join } from "path";
 
 const command: GluegunCommand = {
   name: "generate-semantics",
@@ -9,19 +10,36 @@ const command: GluegunCommand = {
     const { print, parameters } = toolbox;
     const { options } = parameters;
 
-    const semanticsTsPath = options.s || options.semantics;
-    const semanticsOutputPath = options.semanticsOut;
-    const translationKeyOutputPath = options.t || options.translations;
+    const semanticsTsPath = join(process.cwd(), options.i || options.in);
+    const outputPath = join(process.cwd(), options.o || options.out);
+    const translationKeyOutputPath = join(
+      process.cwd(),
+      options.t || options.translations,
+    );
+
+    console.info("Creating semantics file");
+    console.info(
+      `
+  Inputs: 
+  Input: '${semanticsTsPath}'
+  Output: '${outputPath}'
+  ${
+    translationKeyOutputPath
+      ? `Translations output: '${translationKeyOutputPath}'`
+      : ""
+  }
+`,
+    );
 
     console.info(
-      `Creating '${semanticsOutputPath}'${
+      `Creating '${outputPath}'${
         translationKeyOutputPath ? ` and '${translationKeyOutputPath}'` : ""
       } based on Semantics TS from ${semanticsTsPath}`,
     );
 
     if (!semanticsTsPath) {
       print.error(
-        "Missing path to TypeScript definition of semantics. Please provide one with the `semantics` flag (-s|--semantics 'path/to/semantics.ts')",
+        "Missing path to TypeScript definition of semantics. Please provide one with the `semantics` flag (-s|--in 'path/to/semantics.ts')",
       );
 
       return 1;
@@ -29,7 +47,7 @@ const command: GluegunCommand = {
 
     generateSemantics(
       semanticsTsPath,
-      semanticsOutputPath,
+      outputPath,
       translationKeyOutputPath,
       print,
     );
