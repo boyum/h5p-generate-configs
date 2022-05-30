@@ -14,7 +14,8 @@
     "target": "ES2018",
     "declaration": true,
     "declarationDir": "build/types",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "demo"]
