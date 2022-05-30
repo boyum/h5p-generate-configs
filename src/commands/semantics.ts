@@ -1,7 +1,7 @@
 import { GluegunCommand, GluegunToolbox } from "gluegun";
 import { join } from "path";
 import type { OptionType } from "../types/OptionType";
-import { getParam } from "../utils/cli.utils";
+import { getOption } from "../utils/cli.utils";
 import { generateSemantics } from "../utils/semantics.utils";
 
 const optionTypes: Record<string, OptionType> = {
@@ -27,10 +27,10 @@ const command: GluegunCommand = {
     const { print, parameters } = toolbox;
     const { options } = parameters;
 
-    const inputParam = getParam<string>(options, optionTypes.input);
+    const inputParam = getOption<string>(options, optionTypes.input);
     const outputParam =
-      getParam<string>(options, optionTypes.output) || "semantics.json";
-    const translationsParam = getParam<string>(
+      getOption<string>(options, optionTypes.output) || "semantics.json";
+    const translationsParam = getOption<string>(
       options,
       optionTypes.translations,
     );

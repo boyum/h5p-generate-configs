@@ -1,6 +1,6 @@
 import type { OptionType } from "../types/OptionType";
 
-export const getParam = <Type = unknown>(
+export const getOption = <Type = unknown>(
   parameters: Record<string, Type>,
   { name, alias }: OptionType,
 ): Type | undefined => {

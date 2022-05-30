@@ -1,5 +1,5 @@
 import type { OptionType } from "../types/OptionType";
-import { getParam as getOption } from "./cli.utils";
+import { getOption } from "./cli.utils";
 
 describe("CLI Utils", () => {
   describe(getOption.name, () => {
