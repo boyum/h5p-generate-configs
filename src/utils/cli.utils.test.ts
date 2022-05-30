@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import type { OptionType } from "../types/OptionType";
 import { getOption } from "./cli.utils";
 
