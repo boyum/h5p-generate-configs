@@ -19,7 +19,7 @@
     "watch": "vitest",
     "coverage": "vitest run --coverage",
     "demo:semantics": "h5p-generate-configs s --in demo/semantics.ts --out demo/semantics.json -t demo/TranslationKey.ts",
-    "publish-to-npm": "np"
+    "publish-to-npm": "npm run build && np"
   },
   "files": [
     "build",
