@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
-import { system, filesystem } from "gluegun";
+import { filesystem, system } from "gluegun";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 const src = filesystem.path(__dirname, "..");
 
@@ -8,41 +9,50 @@ const cli = async (cmd: string) =>
     "node " + filesystem.path(src, "bin", "h5p-generate-configs") + ` ${cmd}`,
   );
 
-test("generates semantics.json", async () => {
-  const tempDir = await fs.mkdtemp("semantics-test_");
-  await fs.copyFile("demo/semantics.ts", `${tempDir}/semantics.ts`);
-  await fs.copyFile(
-    "demo/semantics-helper.ts",
-    `${tempDir}/semantics-helper.ts`,
-  );
+describe("Integration tests", () => {
+  describe("generate-semantics", () => {
+    let tempDir: string;
 
-  try {
-    await cli(
-      `generate-semantics --in ${tempDir}/semantics.ts --out ${tempDir}/semantics.json -t ${tempDir}/TranslationKey.ts`,
-    );
+    beforeEach(async () => {
+      tempDir = await fs.mkdtemp("semantics-test_");
 
-    const expected = (await fs.readFile("demo/semantics.json")).toString(
-      "utf-8",
-    );
-    const actual = (await fs.readFile(`${tempDir}/semantics.json`)).toString(
-      "utf-8",
-    );
+      await fs.copyFile("demo/semantics.ts", `${tempDir}/semantics.ts`);
+      await fs.copyFile(
+        "demo/semantics-helper.ts",
+        `${tempDir}/semantics-helper.ts`,
+      );
+    });
 
-    expect(actual).toBe(expected);
-  } finally {
-    await fs.rm(tempDir, { recursive: true });
-  }
+    afterEach(async () => {
+      await fs.rm(tempDir, { recursive: true });
+    });
+
+    it("should generate a semantics.json file and translation keys", async () => {
+      const testCommand = [
+        `generate-semantics`,
+        `--in ${tempDir}/semantics.ts`,
+        `--out ${tempDir}/semantics.json`,
+        `-t ${tempDir}/TranslationKey.ts`,
+      ].join(" ");
+
+      await cli(testCommand);
+
+      const expectedSemantics = (
+        await fs.readFile("demo/semantics.json")
+      ).toString("utf-8");
+      const actualSemantics = (
+        await fs.readFile(`${tempDir}/semantics.json`)
+      ).toString("utf-8");
+
+      const expectedTranslationKey = (
+        await fs.readFile("demo/TranslationKey.ts")
+      ).toString("utf-8");
+      const actualTranslationKey = (
+        await fs.readFile(`${tempDir}/TranslationKey.ts`)
+      ).toString("utf-8");
+
+      expect(actualSemantics).toBe(expectedSemantics);
+      expect(actualTranslationKey).toBe(expectedTranslationKey);
+    });
+  });
 });
-
-// test("generates file", async () => {
-//   const output = await cli("generate foo");
-
-//   expect(output).toContain("Generated file at models/foo-model.ts");
-//   const foomodel = filesystem.read("models/foo-model.ts");
-
-//   expect(foomodel).toContain(`module.exports = {`);
-//   expect(foomodel).toContain(`name: 'foo'`);
-
-//   // cleanup artifact
-//   filesystem.remove("models");
-// });
