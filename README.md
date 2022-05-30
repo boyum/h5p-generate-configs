@@ -28,14 +28,8 @@ $ h5p-generate-configs s -s src/semantics.ts -t src/TranslationKey.ts
 
 ## Publishing to NPM
 
-To package your CLI up for NPM, do this:
+To package the CLI up for NPM, do this:
 
 ```shell
-$ npm login
-$ npm whoami
-$ npm test
-
-$ npm run build
-
-$ npm publish
+$ npm run publish-to-npm
 ```

@@ -1,11 +1,8 @@
 import { promises as fs } from "fs";
 import { GluegunPrint } from "gluegun";
 import type { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
+import type { Semantics } from "../types/Semantics";
 import { findDuplicates } from "./array.utils";
-
-const semanticsPath = "semantics.json";
-
-type Semantics = Array<H5PField | H5PBehaviour | H5PL10n>;
 
 async function createSemanticsJson(
   semantics: Semantics,
@@ -71,8 +68,8 @@ export type TranslationKey =
 
 export async function generateSemantics(
   semanticsTsPath: string,
-  outputPath: string | undefined,
-  translationKeyOutputPath: string,
+  outputPath: string,
+  translationKeyOutputPath: string | undefined,
   print: GluegunPrint,
 ): Promise<void> {
   const path = semanticsTsPath.trim();
@@ -92,5 +89,5 @@ export async function generateSemantics(
   }
 
   print.info("Generating JSON file for semantics.");
-  await createSemanticsJson(semantics, outputPath || semanticsPath);
+  await createSemanticsJson(semantics, outputPath);
 }
