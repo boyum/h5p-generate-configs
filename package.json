@@ -31,7 +31,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "gluegun": "latest"
+    "gluegun": "^5.1.2"
   },
   "jest": {
     "preset": "ts-jest",
