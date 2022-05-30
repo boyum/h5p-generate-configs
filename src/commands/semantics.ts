@@ -1,5 +1,6 @@
 import { GluegunCommand, GluegunToolbox } from "gluegun";
 import { generateSemantics } from "../utils/semantics.utils";
+import { join } from "path";
 
 const command: GluegunCommand = {
   name: "generate-semantics",
@@ -9,9 +10,26 @@ const command: GluegunCommand = {
     const { print, parameters } = toolbox;
     const { options } = parameters;
 
-    const semanticsTsPath = options.s || options.semantics;
-    const semanticsOutputPath = options.semanticsOut;
-    const translationKeyOutputPath = options.t || options.translations;
+    const semanticsTsPath = join(process.cwd(), options.s || options.semantics);
+    const semanticsOutputPath = join(process.cwd(), options.semanticsOut);
+    const translationKeyOutputPath = join(
+      process.cwd(),
+      options.t || options.translations,
+    );
+
+    console.info("Creating semantics file");
+    console.info(
+      `
+  Inputs: 
+  Input: '${semanticsTsPath}'
+  Output: '${semanticsOutputPath}'
+  ${
+    translationKeyOutputPath
+      ? `Translations output: '${translationKeyOutputPath}'`
+      : ""
+  }
+`,
+    );
 
     console.info(
       `Creating '${semanticsOutputPath}'${
