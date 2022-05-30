@@ -1,4 +1,4 @@
-import { promises as fs } from "fs";
+import { promises as fs, existsSync } from "fs";
 import type { GluegunPrint } from "gluegun";
 import type { H5PBehaviour, H5PField, H5PL10n } from "h5p-types";
 import type { Semantics } from "../types/Semantics";
@@ -25,7 +25,10 @@ async function readSemanticsTSFile(path: string): Promise<Semantics> {
 async function deleteTranslationKeysFile(
   translationKeyOutputPath: string,
 ): Promise<void> {
-  await fs.rm(translationKeyOutputPath);
+  const fileExists = existsSync(translationKeyOutputPath);
+  if (fileExists) {
+    await fs.rm(translationKeyOutputPath);
+  }
 }
 
 async function createTranslationKeys(
