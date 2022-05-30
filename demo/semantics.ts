@@ -1,28 +1,12 @@
-import { H5PField, H5PBehaviour, H5PL10n } from "h5p-types";
+import type { H5PField, H5PBehaviour, H5PL10n } from "h5p-types";
+import { getPosition } from "./semantics-helper";
 
 export const semantics: Readonly<Array<H5PField | H5PBehaviour | H5PL10n>> = [
   {
     label: "Position",
     name: "position",
     type: "group",
-    fields: [
-      {
-        label: "X",
-        name: "x",
-        type: "number",
-        min: 0,
-        max: 100,
-        decimals: 3,
-      },
-      {
-        label: "Y",
-        name: "y",
-        type: "number",
-        min: 0,
-        max: 100,
-        decimals: 3,
-      },
-    ],
+    fields: [getPosition("x"), getPosition("y")],
   },
   {
     label: "Description",
