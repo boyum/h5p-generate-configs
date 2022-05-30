@@ -1,6 +1,6 @@
 {
   "name": "h5p-generate-configs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "h5p-generate-configs CLI",
   "private": false,
   "types": "build/types/types.d.ts",
