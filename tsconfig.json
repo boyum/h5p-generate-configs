@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": false,
     "experimentalDecorators": true,
-    "lib": ["ESNext", "dom"],
+    "lib": ["ESNext"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -12,7 +12,7 @@
     "inlineSourceMap": true,
     "outDir": "build",
     "strict": true,
-    "target": "es5",
+    "target": "ES2018",
     "declaration": true,
     "declarationDir": "build/types",
     "downlevelIteration": true
