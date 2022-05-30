@@ -8,8 +8,7 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "sourceMap": false,
-    "inlineSourceMap": true,
+    "sourceMap": true,
     "outDir": "build",
     "strict": true,
     "target": "ES2018",
@@ -18,5 +17,5 @@
     "downlevelIteration": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "demo"]
 }

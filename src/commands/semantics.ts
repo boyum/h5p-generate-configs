@@ -1,6 +1,23 @@
 import { GluegunCommand, GluegunToolbox } from "gluegun";
-import { generateSemantics } from "../utils/semantics.utils";
 import { join } from "path";
+import type { OptionType } from "../types/OptionType";
+import { getParam } from "../utils/cli.utils";
+import { generateSemantics } from "../utils/semantics.utils";
+
+const optionTypes: Record<string, OptionType> = {
+  input: {
+    name: "in",
+    alias: "i",
+  },
+  output: {
+    name: "out",
+    alias: "o",
+  },
+  translations: {
+    name: "translations",
+    alias: "t",
+  },
+} as const;
 
 const command: GluegunCommand = {
   name: "generate-semantics",
@@ -10,15 +27,30 @@ const command: GluegunCommand = {
     const { print, parameters } = toolbox;
     const { options } = parameters;
 
-    const semanticsTsPath = join(process.cwd(), options.i || options.in);
-    const outputPath = join(process.cwd(), options.o || options.out);
-    const translationKeyOutputPath = join(
-      process.cwd(),
-      options.t || options.translations,
+    const inputParam = getParam<string>(options, optionTypes.input);
+    const outputParam =
+      getParam<string>(options, optionTypes.output) || "semantics.json";
+    const translationsParam = getParam<string>(
+      options,
+      optionTypes.translations,
     );
 
-    console.info("Creating semantics file");
-    console.info(
+    if (!inputParam) {
+      print.error(
+        "Missing path to TypeScript definition of semantics. Please provide one with the `semantics` flag (-i|--in 'path/to/semantics.ts')",
+      );
+
+      return 1;
+    }
+
+    const semanticsTsPath = join(process.cwd(), inputParam);
+    const outputPath = join(process.cwd(), outputParam);
+    const translationKeyOutputPath = translationsParam
+      ? join(process.cwd(), translationsParam)
+      : undefined;
+
+    print.info("Creating semantics file");
+    print.info(
       `
   Inputs: 
   Input: '${semanticsTsPath}'
@@ -30,20 +62,6 @@ const command: GluegunCommand = {
   }
 `,
     );
-
-    console.info(
-      `Creating '${outputPath}'${
-        translationKeyOutputPath ? ` and '${translationKeyOutputPath}'` : ""
-      } based on Semantics TS from ${semanticsTsPath}`,
-    );
-
-    if (!semanticsTsPath) {
-      print.error(
-        "Missing path to TypeScript definition of semantics. Please provide one with the `semantics` flag (-s|--in 'path/to/semantics.ts')",
-      );
-
-      return 1;
-    }
 
     generateSemantics(
       semanticsTsPath,
