@@ -13,6 +13,12 @@ const command: GluegunCommand = {
     const semanticsOutputPath = options.semanticsOut;
     const translationKeyOutputPath = options.t || options.translations;
 
+    console.info(
+      `Creating '${semanticsOutputPath}'${
+        translationKeyOutputPath ? ` and '${translationKeyOutputPath}'` : ""
+      } based on Semantics TS from ${semanticsTsPath}`,
+    );
+
     if (!semanticsTsPath) {
       print.error(
         "Missing path to TypeScript definition of semantics. Please provide one with the `semantics` flag (-s|--semantics 'path/to/semantics.ts')",

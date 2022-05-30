@@ -1,0 +1,68 @@
+name: Build and test
+
+on:
+  - push
+
+jobs:
+  format:
+    name: Validate formatting
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Validate formatting
+        run: npm run format:check
+
+  unit-test:
+    name: Unit test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Unit test
+        run: npm run coverage
+
+      - name: Test demo
+        run: npm link && npm run demo:semantics
+
+  test-semantics:
+    name: Test semantics
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Test semantics
+        run: npm link && npm run demo:semantics
+
+  build:
+    name: Build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build
+        run: npm run build
