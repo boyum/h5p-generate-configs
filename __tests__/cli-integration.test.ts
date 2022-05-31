@@ -54,4 +54,37 @@ describe("Integration tests", () => {
       expect(actualTranslationKey).toBe(expectedTranslationKey);
     });
   });
+
+  describe("generate-library", () => {
+    let tempDir: string;
+
+    beforeEach(async () => {
+      tempDir = await fs.mkdtemp("library-test_");
+
+      await fs.copyFile("demo/library.ts", `${tempDir}/library.ts`);
+    });
+
+    afterEach(async () => {
+      await fs.rm(tempDir, { recursive: true });
+    });
+
+    it("should generate a library.json file", async () => {
+      const testCommand = [
+        `generate-library`,
+        `--in ${tempDir}/library.ts`,
+        `--out ${tempDir}/library.json`,
+      ].join(" ");
+
+      await cli(testCommand);
+
+      const expectedLibrary = (await fs.readFile("demo/library.json")).toString(
+        "utf-8",
+      );
+      const actualLibrary = (
+        await fs.readFile(`${tempDir}/library.json`)
+      ).toString("utf-8");
+
+      expect(actualLibrary).toBe(expectedLibrary);
+    });
+  });
 });
