@@ -29,7 +29,7 @@ describe("Integration tests", () => {
     it("should generate a semantics.json file and translation keys", async () => {
       const testCommand = [
         `generate-semantics`,
-        `--in ${tempDir}/semantics.ts`,
+        `--type-definition ${tempDir}/semantics.ts`,
         `--out ${tempDir}/semantics.json`,
         `-t ${tempDir}/TranslationKey.ts`,
       ].join(" ");
@@ -71,7 +71,7 @@ describe("Integration tests", () => {
     it("should generate a library.json file", async () => {
       const testCommand = [
         `generate-library`,
-        `--in ${tempDir}/library.ts`,
+        `--type-definition ${tempDir}/library.ts`,
         `--out ${tempDir}/library.json`,
       ].join(" ");
 
