@@ -36,7 +36,7 @@ const command: GluegunCommand = {
 
     if (!inputParam) {
       print.error(
-        "Missing path to TypeScript definition of semantics. Please provide one with the `semantics` flag (-i|--in 'path/to/semantics.ts')",
+        `Missing path to TypeScript definition of semantics. Please provide one with the \`${options.input.name}\` flag (-${options.input.alias}|--${options.input.name} 'path/to/semantics.ts')`,
       );
 
       return 1;
