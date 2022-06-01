@@ -5,8 +5,8 @@ import { generateSemantics } from "../utils/semantics.utils";
 
 const optionTypes = {
   input: {
-    name: "in",
-    alias: "i",
+    name: "type-definition",
+    alias: "d",
   },
   output: {
     name: "out",

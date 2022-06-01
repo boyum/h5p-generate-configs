@@ -18,8 +18,8 @@
     "test": "jest",
     "watch": "jest --watch",
     "coverage": "jest --coverage",
-    "demo:semantics": "h5p-generate-configs s --in demo/semantics.ts --out demo/semantics.json -t demo/TranslationKey.ts",
-    "demo:library": "h5p-generate-configs l --in demo/library.ts --out demo/library.json",
+    "demo:semantics": "h5p-generate-configs s --type-definition demo/semantics.ts --out demo/semantics.json -t demo/TranslationKey.ts",
+    "demo:library": "h5p-generate-configs l --type-definition demo/library.ts --out demo/library.json",
     "publish-to-npm": "npm run build && np"
   },
   "files": [
