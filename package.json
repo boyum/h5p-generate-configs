@@ -4,6 +4,10 @@
   "description": "h5p-generate-configs CLI",
   "private": false,
   "types": "build/types/types.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boyum/h5p-generate-configs.git"
+  },
   "bin": {
     "h5p-generate-configs": "bin/h5p-generate-configs"
   },
